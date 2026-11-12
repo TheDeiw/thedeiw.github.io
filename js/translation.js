@@ -37,7 +37,7 @@ function changeLanguage(language) {
     } else if (language === "ua") {
         body.classList.remove("en-style");
         body.classList.add("ua-style");
-        document.documentElement.lang = "ua";
+        document.documentElement.lang = "uk";
     }
 
     document.dispatchEvent(new CustomEvent("app:languagechange"));
