@@ -1,7 +1,7 @@
 # TheDeiw Portfolio
 A modern, interactive personal portfolio website showcasing game development projects, web development work, and professional experience. Built with vanilla JavaScript and featuring a 3D animated logo, multilingual support, and responsive design.
 
-Visit the live portfolio at: **[https://thedeiw.github.io/TheDeiwPortfolio/](https://thedeiw.github.io/TheDeiwPortfolio/)**
+Visit the live portfolio at: **[https://thedeiw.github.io/](https://thedeiw.github.io/)**
 
 ![Portfolio Preview](https://github.com/user-attachments/assets/4c91c4f2-5494-48a5-968c-040778f66181)
 

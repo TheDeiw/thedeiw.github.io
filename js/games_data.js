@@ -8,7 +8,7 @@ const GAMES = [
         typeKey: "VR_Simulator",
         descKey: "demining_academy_description",
         color: "#83CC8F",
-        url: "https://thedeiw.github.io/TheDeiwGames/pages/DeminingAcademy.html",
+        url: "https://thedeiwsgames.github.io/pages/DeminingAcademy.html",
         cover: "assets/img/projects_games/DeminingAcademy.webp",
         video: "assets/video/games/demining-academy.mp4",
     },
@@ -18,7 +18,7 @@ const GAMES = [
         typeKey: "unity_ml_agent",
         descKey: "space_dodger_description",
         color: "#102185",
-        url: "https://thedeiw.github.io/TheDeiwGames/pages/SpaceDodger.html",
+        url: "https://thedeiwsgames.github.io/pages/SpaceDodger.html",
         cover: "assets/img/projects_games/SpaceDodger.webp",
     },
     {
@@ -27,7 +27,7 @@ const GAMES = [
         typeKey: "unity_game",
         descKey: "cube_runner_description",
         color: "#32C744",
-        url: "https://thedeiw.github.io/TheDeiwGames/pages/CubeRunner.html",
+        url: "https://thedeiwsgames.github.io/pages/CubeRunner.html",
         cover: "assets/img/projects_games/CubeRunner.webp",
     },
     {
@@ -36,7 +36,7 @@ const GAMES = [
         typeKey: "unity_game",
         descKey: "tank_destroyer_description",
         color: "#0F4011",
-        url: "https://thedeiw.github.io/TheDeiwGames/pages/TankDestroyer.html",
+        url: "https://thedeiwsgames.github.io/pages/TankDestroyer.html",
         cover: "assets/img/projects_games/TankDestroyer.webp",
     },
     {
@@ -45,7 +45,7 @@ const GAMES = [
         typeKey: "unity_game",
         descKey: "fall_balls_description",
         color: "#777977",
-        url: "https://thedeiw.github.io/TheDeiwGames/pages/FallBalls.html",
+        url: "https://thedeiwsgames.github.io/pages/FallBalls.html",
         cover: "assets/img/projects_games/Fall-Balls.webp",
     },
     {
@@ -54,7 +54,7 @@ const GAMES = [
         typeKey: "unity_game",
         descKey: "blocky_description",
         color: "#c89b14",
-        url: "https://thedeiw.github.io/TheDeiwGames/pages/Blocky.html",
+        url: "https://thedeiwsgames.github.io/pages/Blocky.html",
         cover: "assets/img/projects_games/Blocky.webp",
     },
 ];
