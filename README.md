@@ -53,7 +53,7 @@ The Games section is a 3D ring (`js/games_scene.js`) built from one list in `js/
    Without `video` the card shows the full cover.
 2. Add an entry to `GAMES` in `js/games_data.js`.
 3. Add the description key to `js/text_languages.js` (`en` and `ua`).
-4. Add the link to the `<noscript>` list in `index.html`.
+4. Add the link to the static `#games-links` list in `index.html` (search engines and no-JS visitors read it).
 
 The ring shows at most 8 games; mark the ones that must stay on it with `featured: true`.
 Serve the site over HTTP (for example `python -m http.server`): textures and videos do not load from `file://`.
