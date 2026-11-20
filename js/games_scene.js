@@ -78,11 +78,12 @@
     // Розкладка в «екранних» одиницях (ширина екрана-консолі = 1).
     function layout(aspect) {
         const compact = aspect < 1.15;
-        const R = compact ? 2.6 : 3.7;
-        const box = compact ? { x0: -R - 0.95, x1: R + 0.95, y0: -2.5, y1: 2.3 } : { x0: -R - 1.0, x1: R + 1.0, y0: -2.6, y1: 2.4 };
+        // На вузькому екрані кільце тісніше, а консолі й геймпад більші/менші: ширина сцени одна, тож інакше все дрібне.
+        const R = compact ? 1.9 : 3.7;
+        const box = compact ? { x0: -R - 0.95, x1: R + 0.95, y0: -2.0, y1: 1.9 } : { x0: -R - 1.0, x1: R + 1.0, y0: -2.6, y1: 2.4 };
         // detail: куди їде відкрита консоль і наскільки збільшується
         const detail = compact ? { x: 0, y: 0.4, k: 1.2 } : { x: -2.8, y: 0.2, k: 1.0 };
-        return { compact, R, box, detail, elev: ((compact ? 24 : 19) * Math.PI) / 180 };
+        return { compact, R, box, detail, objK: compact ? 1.1 : 1, padK: compact ? 0.6 : 1, elev: ((compact ? 38 : 19) * Math.PI) / 180 };
     }
 
     // ---------- стан ----------
@@ -661,7 +662,7 @@
             o.group.position.set(lay.R * Math.cos(a), 0, lay.R * sn).lerp(dp, o.s);
             const b = (0.72 + 0.28 * Math.max(depth, o.s)) * o.dim;
             o.pivot.rotation.set(-lay.elev * 0.8, 0.38 * Math.sin(t * 1.1 + k) * motion * (1 - o.s) * (1 - 0.6 * o.h), 0);
-            o.group.scale.setScalar((0.9 + 0.1 * depth) * OBJ_SCALE * (1 + 0.12 * o.h + lay.detail.k * o.s) * (1 - 0.3 * o.s)); // 0.7 компенсує наближення до камери
+            o.group.scale.setScalar((0.9 + 0.1 * depth) * OBJ_SCALE * lay.objK * (1 + 0.12 * o.h + lay.detail.k * o.s) * (1 - 0.3 * o.s)); // 0.7 компенсує наближення до камери
             o.tint.forEach(([m, base]) => m.color.copy(base).multiplyScalar(b));
             o.screenMat.color.setScalar(b * (0.85 + 0.15 * Math.max(o.s, o.h)));
             o.rimMat.color.copy(o.glow).multiplyScalar(b * (0.5 + 0.5 * Math.max(o.s, o.h)));
@@ -677,6 +678,7 @@
         }
 
         // коли гру відкрито, геймпад темнішає й завмирає
+        pad.group.scale.setScalar(PAD_SCALE * lay.padK);
         pad.dim += ((sel >= 0 ? 0.25 : 1) - pad.dim) * f;
         pad.tint.forEach(([m, base]) => m.color.copy(base).multiplyScalar(pad.dim));
         if (sel < 0) {
