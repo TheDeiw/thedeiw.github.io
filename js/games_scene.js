@@ -102,7 +102,7 @@
     let sel = -1, pinned = -1, hoverIdx = -1, focusIdx = -1, cardHover = false;
     let clearT = 0, playT = 0, lastType = "mouse";
     let ptr = null, down = null, dragging = false, autoStopped = false;
-    let gWarm = 60, gSum = 0, gN = 0, perfFail = false;
+    let gWarm = 60, gSum = 0, gN = 0;
     let inView = false, lost = false, failed = false, cardStatic = mqStatic.matches, padGlow = 0;
 
     // ---------- геометрія й текстури ----------
@@ -609,17 +609,14 @@
         renderCard(sel);
     }
 
-    // Якщо кадри повільні (слабкий пристрій): спершу знижуємо роздільність, потім показуємо звичайний список.
+    // Повільні кадри: лише знижуємо роздільність. Сцену на список не міняємо: браузери в режимі економії
+    // енергії обмежують rAF до 30 fps, і це не означає, що пристрій не тягне сцену.
     function slowDown() {
         if (dprCap > 1) {
             dprCap = 1;
-            gWarm = 60;
             resize();
-        } else {
-            perfFail = failed = true;
-            stop();
-            showFallback();
         }
+        gWarm = Infinity; // більше не міряємо
     }
 
     // ---------- кадр ----------
@@ -634,7 +631,7 @@
             else if (++gN && (gSum += raw) !== 0 && gN >= 90) {
                 const avg = (gSum / gN) * 1000;
                 gSum = gN = 0;
-                if (avg > 26) slowDown();
+                if (avg > 40) slowDown(); // нижче ~25 fps
             }
         }
         const f = 1 - Math.pow(0.001, dt); // згладжування ~ 0.11 за кадр при 60 fps
@@ -703,7 +700,7 @@
         raf = 0;
     }
     function update() {
-        if (renderer && lay && inView && !document.hidden && !lost && !perfFail) start();
+        if (renderer && lay && inView && !document.hidden && !lost) start();
         else stop();
     }
 
